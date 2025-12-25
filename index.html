@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapura Cloud - Panel Pterodactyl Profesional</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/cloud-server.png">
+</head>
+<body>
+    <!-- Notifikasi -->
+    <div id="notification-container"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-cloud"></i>
+                    <span>Sapura Cloud</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Beranda</a></li>
+                    <li><a href="#pricing" class="nav-link">Panel</a></li>
+                    <li><a href="#features" class="nav-link">Fitur</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                    <li><a href="#extend" class="nav-link btn-extend"><i class="fas fa-sync-alt"></i> Perpanjang</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Panel Pterodactyl <span class="highlight">Premium</span></h1>
+                <p class="hero-subtitle">Hosting panel berkualitas tinggi dengan performa maksimal dan dukungan 24/7</p>
+                <div class="hero-buttons">
+                    <a href="#pricing" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Beli Panel</a>
+                    <a href="#features" class="btn btn-secondary"><i class="fas fa-list"></i> Spesifikasi</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cloud Server">
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricelist Panel</h2>
+                <p>Pilih paket yang sesuai dengan kebutuhan Anda</p>
+            </div>
+            
+            <div class="pricing-grid" id="pricing-grid">
+                <!-- Paket akan diisi oleh JavaScript -->
+            </div>
+            
+            <!-- Paket Reseller -->
+            <div class="reseller-card">
+                <div class="reseller-header">
+                    <h3><i class="fas fa-crown"></i> Reseller Private</h3>
+                    <span class="price">Rp20.000</span>
+                </div>
+                <p>Akses panel reseller dengan fitur lengkap dan prioritas support</p>
+                <button class="btn btn-reseller" onclick="selectPackage('Reseller Private', 20000)">Pilih Paket</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <div class="order-container">
+                <div class="order-header">
+                    <h2><i class="fas fa-shopping-cart"></i> Form Pemesanan</h2>
+                    <p>Isi data untuk melanjutkan pembelian</p>
+                </div>
+                
+                <form id="order-form">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="username" placeholder="Masukkan username untuk panel" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password (Opsional)</label>
+                        <input type="text" id="password" placeholder="Kosongkan untuk generate password acak">
+                        <button type="button" class="btn-generate" onclick="generatePassword()">
+                            <i class="fas fa-key"></i> Generate
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-box"></i> Paket Dipilih</label>
+                        <div class="selected-package" id="selected-package">
+                            <span id="package-name">Belum ada paket dipilih</span>
+                            <span id="package-price">Rp0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-credit-card"></i> Metode Pembayaran</label>
+                        <div class="payment-methods">
+                            <div class="payment-option active" data-method="qris">
+                                <i class="fas fa-qrcode"></i> QRIS
+                            </div>
+                            <div class="payment-option" data-method="bank">
+                                <i class="fas fa-university"></i> Transfer Bank
+                            </div>
+                            <div class="payment-option" data-method="ewallet">
+                                <i class="fas fa-wallet"></i> E-Wallet
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="submit-order">
+                            <i class="fas fa-lock"></i> Bayar Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- QRIS Modal -->
+            <div class="modal" id="qris-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-qrcode"></i> Pembayaran QRIS</h3>
+                        <button class="close-modal" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="qris-container">
+                            <div class="qris-code" id="qris-placeholder">
+                                <!-- QRIS akan muncul di sini -->
+                                <div class="loading-qris">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Memuat QR Code...</p>
+                                </div>
+                            </div>
+                            <div class="payment-info">
+                                <h4>Instruksi Pembayaran:</h4>
+                                <ol>
+                                    <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
+                                    <li>Pilih fitur scan QRIS</li>
+                                    <li>Arahkan kamera ke QR code di samping</li>
+                                    <li>Pastikan nominal sesuai: <strong id="payment-amount">Rp0</strong></li>
+                                    <li>Konfirmasi pembayaran</li>
+                                </ol>
+                                <div class="timer">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Batas waktu: <strong id="countdown">05:00</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-details">
+                            <h4>Detail Pesanan:</h4>
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <span>ID Transaksi:</span>
+                                    <strong id="transaction-id">-</strong>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Paket:</span>
+                                    <strong id="detail-package">-</strong>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Username:</span>
+                                    <strong id="detail-username">-</strong>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Status:</span>
+                                    <span class="status-pending" id="detail-status">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeModal()">
+                            <i class="fas fa-times"></i> Tutup
+                        </button>
+                        <button class="btn btn-primary" id="check-payment">
+                            <i class="fas fa-sync-alt"></i> Cek Status
+                        </button>
+                        <button class="btn btn-success" id="download-data" style="display:none">
+                            <i class="fas fa-download"></i> Download Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Spesifikasi Panel</h2>
+                <p>Teknologi terbaik untuk performa optimal</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Intel Xeon Gold 6140</h3>
+                    <p>Processor 2 cores dengan performa tinggi dan stabil untuk kebutuhan server berat</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Server Aktif & Garansi</h3>
+                    <p>Uptime 99.9% dengan garansi full 30 hari untuk kepuasan maksimal</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Perpanjang Kapan Saja</h3>
+                    <p>Fleksibilitas perpanjangan panel sesuai kebutuhan tanpa batas waktu</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>NVMe Fast Response</h3>
+                    <p>Storage NVMe dengan kecepatan baca/tulis tinggi untuk respons super cepat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extend Panel Section -->
+    <section class="extend" id="extend">
+        <div class="container">
+            <div class="extend-container">
+                <div class="extend-info">
+                    <h2><i class="fas fa-sync-alt"></i> Perpanjang Panel</h2>
+                    <p>Masukkan ID panel Anda untuk melakukan perpanjangan masa aktif</p>
+                    
+                    <div class="extend-form">
+                        <input type="text" id="panel-id" placeholder="Masukkan ID Panel">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-search"></i> Cek Panel
+                        </button>
+                    </div>
+                    
+                    <div class="extend-features">
+                        <h4><i class="fas fa-check-circle"></i> Keuntungan:</h4>
+                        <ul>
+                            <li>Harga tetap tanpa kenaikan</li>
+                            <li>Proses instan dalam 1 menit</li>
+                            <li>Data panel tetap aman</li>
+                            <li>Pilihan periode fleksibel</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="extend-image">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Extend Panel">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kontak Customer Service</h2>
+                <p>Tim support kami siap membantu 24/7</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>+62 812-3456-7890</p>
+                    <a href="https://wa.me/6281234567890" class="btn-contact" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chat Sekarang
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>Telegram</h3>
+                    <p>@sapuracloud_cs</p>
+                    <a href="https://t.me/sapuracloud_cs" class="btn-contact" target="_blank">
+                        <i class="fab fa-telegram"></i> Kirim Pesan
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>support@sapuracloud.id</p>
+                    <a href="mailto:support@sapuracloud.id" class="btn-contact">
+                        <i class="fas fa-paper-plane"></i> Kirim Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-cloud"></i>
+                    <span>Sapura Cloud</span>
+                    <p>Penyedia panel Pterodactyl terpercaya dengan layanan premium dan support terbaik.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Menu Cepat</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#pricing">Beli Panel</a></li>
+                        <li><a href="#extend">Perpanjang Panel</a></li>
+                        <li><a href="#contact">Kontak CS</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-payment">
+                    <h4>Pembayaran</h4>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fas fa-qrcode"></i>
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <p>Support berbagai metode pembayaran</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sapura Cloud. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
