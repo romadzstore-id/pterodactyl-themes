@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sapura Cloud | Panel Pterodactyl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <h1>Sapura<span>Cloud</span></h1>
+  <nav>
+    <a href="#buy">Buy Panel</a>
+    <a href="#pricelist">Pricelist</a>
+    <a href="#contact">Contact CS</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Panel Pterodactyl Profesional</h2>
+  <p>Server ngebut, aman, garansi full 30 hari ⚡</p>
+</section>
+
+<section id="pricelist" class="card">
+  <h3>📦 Pricelist Panel</h3>
+  <ul>
+    <li>RAM 1GB • CPU 40% — <b>Rp3.000</b></li>
+    <li>RAM 2GB • CPU 80% — <b>Rp6.000</b></li>
+    <li>RAM 3GB • CPU 100% — <b>Rp9.000</b></li>
+    <li>RAM 4GB • CPU 110% — <b>Rp12.000</b></li>
+    <li>RAM 5GB • CPU 120% — <b>Rp15.000</b></li>
+    <li>Resseler Private — <b>Rp20.000</b></li>
+  </ul>
+</section>
+
+<section class="card">
+  <h3>⚙️ Spesifikasi Server</h3>
+  <ul>
+    <li>Intel Xeon Gold 6140 (2 Cores)</li>
+    <li>NVMe Fast Response (Ngebut)</li>
+    <li>Panel Aktif & Garansi 30 Hari</li>
+    <li>Bisa Perpanjang Kapan Aja</li>
+  </ul>
+</section>
+
+<section id="buy" class="card">
+  <h3>🛒 Beli Panel</h3>
+
+  <input id="username" placeholder="Username Panel">
+  <input id="password" placeholder="Password (opsional)">
+  
+  <select id="paket">
+    <option value="PLN1">RAM 1GB - 3000</option>
+    <option value="PLN2">RAM 2GB - 6000</option>
+    <option value="PLN3">RAM 3GB - 9000</option>
+    <option value="PLN4">RAM 4GB - 12000</option>
+    <option value="PLN5">RAM 5GB - 15000</option>
+    <option value="PLN6">Reseller - 20000</option>
+  </select>
+
+  <button onclick="buatTransaksi()">Bayar Sekarang (QRIS)</button>
+</section>
+
+<section id="result" class="card hidden"></section>
+
+<footer id="contact">
+  <p>📞 CS WhatsApp: 08xxxxxxx</p>
+  <p>© 2025 Sapura Cloud</p>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
