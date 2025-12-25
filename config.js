@@ -2,7 +2,7 @@
 const CONFIG = {
     // API Configuration
     API_BASE_URL: 'https://atlantich2h.com',
-    API_KEY: 'yourapikeyxxxxxxxxxxx', // Ganti dengan API key Anda
+    API_KEY: 'hjIHv3G0O6wFSkMkiCVJ6REJ6Uy1DWd091X0W8GEpzCTCRDyU4tronGdzxB3KKNK3hAgi0Orwp53WVoA4hDEZLbsV5U1dDbI6jjA', // Ganti dengan API key Anda
     
     // Product Codes (sesuaikan dengan kode produk Atlantic Pedia)
     PRODUCT_CODES: {
