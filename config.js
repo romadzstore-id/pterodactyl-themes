@@ -29,7 +29,7 @@ const CONFIG = {
     NOTIFICATION_TIMEOUT: 5000,
     
     // Mock Data for Development (hapus di production)
-    USE_MOCK_DATA: true,
+    USE_MOCK_DATA: false,
     MOCK_RESPONSES: {
         success: {
             status: true,
